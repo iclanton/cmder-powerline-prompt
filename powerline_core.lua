@@ -45,6 +45,7 @@ ansiFgClrBlue = "34"
 ansiFgClrMagenta = "35"
 ansiFgClrCyan = "36"
 ansiFgClrWhite = "37"
+ansiFgClrOrange = ""
 -- ANSI Background Colors
 ansiBgClrBlack = "40"
 ansiBgClrRed = "41"
@@ -54,6 +55,7 @@ ansiBgClrBlue = "44"
 ansiBgClrMagenta = "45"
 ansiBgClrCyan = "46"
 ansiBgClrWhite = "47"
+ansiBgClrOrange = "48;5;208"
 
 -- Colors
 colorBlack = {
@@ -87,6 +89,10 @@ colorCyan = {
 colorWhite = {
 	foreground = ansiFgClrWhite,
 	background = ansiBgClrWhite
+}
+colorOrange = {
+	foreground = ansiFgClrOrange,
+	background = ansiBgClrOrange
 }
 
 -- Variables to maintain prompt state
