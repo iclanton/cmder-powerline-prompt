@@ -37,25 +37,25 @@
 -- ANSI Escape Character
 ansiEscChar = "\x1b"
 -- ANSI Foreground Colors
-ansiFgClrBlack = "30"
-ansiFgClrRed = "31"
-ansiFgClrGreen = "32"
-ansiFgClrYellow = "33"
-ansiFgClrBlue = "34"
-ansiFgClrMagenta = "35"
-ansiFgClrCyan = "36"
-ansiFgClrWhite = "37"
-ansiFgClrOrange = ""
+ansiFgClrBlack = "0;0;0"
+ansiFgClrRed = "255;0;0"
+ansiFgClrGreen = "0;255;0"
+ansiFgClrYellow = "255;255;0"
+ansiFgClrBlue = "0;0;255"
+ansiFgClrMagenta = "215;0;175"
+ansiFgClrCyan = "0;255;255"
+ansiFgClrWhite = "255;255;255"
+ansiFgClrOrange = "215;95;0"
 -- ANSI Background Colors
-ansiBgClrBlack = "40"
-ansiBgClrRed = "41"
-ansiBgClrGreen = "42"
-ansiBgClrYellow = "43"
-ansiBgClrBlue = "44"
-ansiBgClrMagenta = "45"
-ansiBgClrCyan = "46"
-ansiBgClrWhite = "47"
-ansiBgClrOrange = "48;5;208"
+ansiBgClrBlack = "0;0;0"
+ansiBgClrRed = "255;0;0"
+ansiBgClrGreen = "0;255;0"
+ansiBgClrYellow = "255;255;0"
+ansiBgClrBlue = "0;0;255"
+ansiBgClrMagenta = "215;0;175"
+ansiBgClrCyan = "0;255;255"
+ansiBgClrWhite = "255;255;255"
+ansiBgClrOrange = "215;95;0"
 
 -- Colors
 colorBlack = {
@@ -158,7 +158,7 @@ function addTextWithColor(text, textToAdd, textColorValue, fillColorValue)
 	-- This adds to text \x1b[30;40mHello\x1b[0m
 	-- which add Hello with red background and black letters
 	-- [0m at the end turns off all attributes
-	text = text..ansiEscChar.."["..textColorValue..";"..fillColorValue.."m"..textToAdd..ansiEscChar.."[0m"
+	text = text..ansiEscChar.."[38;2;"..textColorValue.."m"..ansiEscChar.."[48;2;"..fillColorValue.."m"..textToAdd..ansiEscChar.."[0m"
 	return text
 end
 

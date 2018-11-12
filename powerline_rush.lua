@@ -27,7 +27,7 @@ local segment = {
   isNeeded = false,
   text = "",
   textColor = colorWhite,
-  fillColor = colorRed
+  fillColor = colorOrange
 }
 
 ---
@@ -46,17 +46,17 @@ local function init()
 
     segment.text = " rush v"..rush_version.." "
   end
-end 
+end
 
 ---
 -- Uses the segment properties to add a new segment to the prompt
 ---
 local function addAddonSegment()
   init()
-  if segment.isNeeded then 
+  if segment.isNeeded then
       addSegment(segment.text, segment.textColor, segment.fillColor)
-  end 
-end 
+  end
+end
 
 -- Register this addon with Clink
 clink.prompt.register_filter(addAddonSegment, 60)
