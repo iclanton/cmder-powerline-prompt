@@ -1,21 +1,13 @@
-local function get_rush_json_dir(path)
-
-  -- return parent path for specified entry (either file or directory)
-  local function pathname(path)
-          local prefix = ""
-          local postfix = ""
-          local i = path:find("[\\/:][^\\/:]*$")
-          if i then
-                  prefix = path:sub(1, i-1)
-
-          end
-          return prefix
+local function get_node_version(path)
+  local result = io.popen("node -v")
+  if result then
+    for line in result:lines() do
+      result:close()
+      return line
+    end
+  else
+    return false
   end
-
-  if not path or path == '.' then path = clink.get_cwd() end
-
-  local parent_path = pathname(path)
-  return io.open(path..'\\rush.json') or (parent_path ~= path and get_rush_json_dir(parent_path) or nil)
 end
 
 -- * Segment object with these properties:
@@ -26,7 +18,7 @@ end
 local segment = {
   isNeeded = false,
   text = "",
-  textColor = colorWhite,
+  textColor = colorBlack,
   fillColor = colorGreen
 }
 
@@ -34,17 +26,9 @@ local segment = {
 -- Sets the properties of the Segment object, and prepares for a segment to be added
 ---
 local function init()
-  segment.isNeeded = get_rush_json_dir()
+  segment.isNeeded = get_node_version()
   if segment.isNeeded then
-    local rush_json = segment.isNeeded:read('*a')
-    segment.isNeeded:close()
-
-    local rush_version = string.match(rush_json, '"rushVersion"%s*:%s*"(.-)"')
-    if rush_version == nil then
-            rush_version = '(unmanaged)'
-    end
-
-    segment.text = " node v"..rush_version.." "
+    segment.text = " node "..segment.isNeeded.." "
   end
 end
 
@@ -53,10 +37,10 @@ end
 ---
 local function addAddonSegment()
   init()
-  if segment.isNeeded then 
+  if segment.isNeeded then
       addSegment(segment.text, segment.textColor, segment.fillColor)
-  end 
-end 
+  end
+end
 
 -- Register this addon with Clink
 clink.prompt.register_filter(addAddonSegment, 60)
