@@ -28,7 +28,7 @@ local segment = {
 local function init()
   segment.isNeeded = get_node_version()
   if segment.isNeeded then
-    segment.text = " node "..segment.isNeeded.." "
+    segment.text = "   "..segment.isNeeded.." "
   end
 end
 

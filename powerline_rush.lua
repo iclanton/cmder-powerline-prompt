@@ -44,7 +44,7 @@ local function init()
             rush_version = '(unmanaged)'
     end
 
-    segment.text = " rush v"..rush_version.." "
+    segment.text = "  v"..rush_version.." "
   end
 end
 
